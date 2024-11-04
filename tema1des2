@@ -1,0 +1,22 @@
+# Ancho del rectángulo (en cm)
+ancho = 15
+
+# Largo del rectángulo (en cm)
+largo = 20
+
+# Mensaje para explicar el ancho
+dato_ancho = "El ancho del rectángulo es de {} cm".format(ancho)
+
+# Mensaje para explicar el largo
+dato_largo = "El largo del rectángulo es de {} cm".format(largo)
+
+# Calcular el área del rectángulo (en cm²)
+area = ancho * largo
+
+# Mensaje para explicar del área
+dato_area = "El área del rectángulo es de {} cm²".format(area)
+
+# Imprimir mensajes explicativos
+print(dato_ancho)
+print(dato_largo)
+print(dato_area)
