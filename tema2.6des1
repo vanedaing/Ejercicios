@@ -1,0 +1,23 @@
+# Se inician contadores para estudiantes que aprobaron y desaprobaron
+aprobados = 0
+desaprobados = 0
+
+# Se solicita al usuario que ingrese las califaciones a los estudiantes
+print("Ingrese las calificaciones de los estudiantes (Ingrese 0 para terminar):")
+while True:
+    calificacion = float(input("Calificación del estudiante: "))
+
+    # Se verifica si el usuario ha ingresado 0 para terminar la entrada de calificaciones
+    if calificacion == 0:
+        break
+
+    # Se verifica  si la calificación es aprobatoria o desaprobatoria
+    if calificacion >= 7:
+        aprobados += 1
+    else:
+        desaprobados += 1
+
+# Mostramos los resultados
+print("Resultado:")
+print(f"Alumnos que aprobaron: {aprobados}")
+print(f"Alumnos que desaprobaron: {desaprobados}")
