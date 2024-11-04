@@ -1,0 +1,9 @@
+#Inventario inicial de la tienda
+inventario = ["manzanas", "bananas", "zanahorias", "espinacas", "brócoli", "cebolla", "kiwis"]
+print("Los productos disponibles son:", inventario)
+# Calculamos cuántos tipos de productos hay en el inventario inicial
+tipos_de_productos = len(inventario)
+print("Hay", tipos_de_productos, "tipos de productos en el inventario inicial")
+#Determinamos cuál es el tercer producto en el inventario
+tercer_producto = inventario[2]
+print( tercer_producto, "es el tercer producto en el inventario")
