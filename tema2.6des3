@@ -1,0 +1,36 @@
+import random
+
+# Asignar velocidades aleatorias entre 1 y 10 para cada auto
+auto_rojo_velocidad = random.randint(1, 10)
+auto_azul_velocidad = random.randint(1, 10)
+auto_verde_velocidad = random.randint(1, 10)
+
+# Inicializar las variables de avance para cada auto
+auto_rojo_avance = 0
+auto_azul_avance = 0
+auto_verde_avance = 0
+
+# Carrera de 10 segundos
+for _ in range(10):
+    auto_rojo_avance += auto_rojo_velocidad
+    auto_azul_avance += auto_azul_velocidad
+    auto_verde_avance += auto_verde_velocidad
+
+# Crear un diccionario para almacenar los autos y sus avances
+avances = {
+    "Auto Rojo": auto_rojo_avance,
+    "Auto Azul": auto_azul_avance,
+    "Auto Verde": auto_verde_avance
+}
+
+# Encontrar el avance máximo
+ganador_avance = max(avances.values())
+
+# Encontrar todos los autos que tienen el avance máximo (en caso de empate)
+ganadores = [auto for auto, avance in avances.items() if avance == ganador_avance]
+
+# Imprimir el resultado de la carrera
+if len(ganadores) > 1:
+    print("Empate entre:", " y ".join(ganadores))
+else:
+    print("Ganó el", ganadores[0])
