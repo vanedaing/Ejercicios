@@ -1,0 +1,39 @@
+# Inventario inicial
+inventario = ["manzanas", "bananas", "zanahorias", "espinacas", "brocoli", "cebolla", "kiwis"]
+
+# Actualizar el inventario después de la venta de todas las bananas
+if "bananas" in inventario:
+    inventario.remove("bananas")
+else:
+    print("No hay bananas en el inventario.")
+
+print("Inventario actualizado después de la venta:")
+print(inventario)
+
+# Se reciben nuevos productos 
+nuevos_productos = ["frutillas", "apio", "papas"]
+
+# Actualizar el inventario con los nuevos productos
+inventario.extend(nuevos_productos)
+
+print("\nInventario actualizado después de recibir nuevos productos:")
+print(inventario)
+
+# Pregunta 5: Verificar si "papas" están en el inventario
+if "papas" in inventario:
+    print("\nLas papas están en el inventario.")
+else:
+    print("\nLas papas no están en el inventario.")
+
+# Pregunta 6: Hacer espacio para "dragonfruit" si el inventario tiene más de 7 productos
+if len(inventario) >= 7:
+    # Sacar el primer producto para hacer espacio
+    producto_eliminado = inventario.pop(0)
+    print(f"\nSe ha eliminado {producto_eliminado} para hacer espacio para la 'dragonfruit'.")
+    inventario.append("dragonfruit")
+else:
+    # Añadir "dragonfruit" directamente si hay espacio
+    inventario.append("dragonfruit")
+
+print("\nInventario final después de hacer espacio para 'dragonfruit':")
+print(inventario)
