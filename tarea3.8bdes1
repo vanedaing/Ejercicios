@@ -1,0 +1,21 @@
+import string
+
+def procesar_texto(texto):
+    # 1. Formatear el texto: convertir la primera letra de cada palabra en mayúscula
+    texto_formateado = string.capwords(texto)
+    print("Texto formateado:", texto_formateado)
+    
+    # 2. Eliminar la puntuación del texto
+    sin_puntuacion = ''.join(char for char in texto_formateado if char not in string.punctuation)
+    print("Texto sin puntuación:", sin_puntuacion)
+    
+    # 3. Extraer solo las letras del alfabeto
+    solo_letras = ''.join(char for char in sin_puntuacion if char in string.ascii_letters)
+    print("Texto solo con letras:", solo_letras)
+
+# Función principal
+def main():
+    entrada = input("Introduce un texto: ")
+    procesar_texto(entrada)
+
+main()
