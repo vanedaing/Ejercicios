@@ -1,0 +1,55 @@
+import numpy as np
+import random
+
+# Crear un tablero de juego de 5x5 lleno de ceros
+tablero = np.zeros((5, 5), dtype=int)
+tablero_mostrar = np.full((5, 5), 'O', dtype=str)  # Crear un tablero de visualización
+
+def colocar_barcos(tablero, num_barcos):
+    barcos_colocados = 0
+    while barcos_colocados < num_barcos:
+        x = random.randint(0, 4)
+        y = random.randint(0, 4)
+        if tablero[x, y] == 0:  # Solo colocar el barco si la celda está vacía
+            tablero[x, y] = 1
+            barcos_colocados += 1
+
+# Colocar 3 barcos en el tablero
+colocar_barcos(tablero, 3)
+
+def verificar_disparo(tablero, tablero_mostrar, x, y):
+    if tablero[x, y] == 1:
+        tablero_mostrar[x, y] = '💣'  # Marcar el barco golpeado en el tablero de visualización
+        tablero[x, y] = 0  # Eliminar el barco golpeado del tablero real
+        return "¡Golpeaste un barco!"
+    else:
+        tablero_mostrar[x, y] = '🌊'  # Marcar el agua en el tablero de visualización
+        return "Caíste en el agua."
+
+# Función para verificar si quedan barcos en el tablero
+def quedan_barcos(tablero):
+    return np.any(tablero == 1)
+
+# Función principal para recibir coordenadas del usuario
+def main():
+    print("Bienvenido a la Batalla Naval")
+    while quedan_barcos(tablero):
+        try:
+            x = int(input("Ingresa la coordenada x (0-4): "))
+            y = int(input("Ingresa la coordenada y (0-4): "))
+            if 0 <= x <= 4 and 0 <= y <= 4:
+                resultado = verificar_disparo(tablero, tablero_mostrar, x, y)
+                print(resultado)
+                print("\nEstado actual del tablero:")
+                for fila in tablero_mostrar:
+                    print(" ".join(fila))
+            else:
+                print("Las coordenadas deben estar en el rango 0-4. Inténtalo de nuevo.")
+        except ValueError:
+            print("Entrada no válida. Por favor, ingresa números enteros entre 0 y 4.")
+
+    print("¡Felicidades! Has destruido todos los barcos.")
+
+# Ejecutar la función principal
+if __name__ == "__main__":
+    main() 
