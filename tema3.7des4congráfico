@@ -1,0 +1,47 @@
+from collections import Counter
+import matplotlib.pyplot as plt
+
+# Se inicia la variable suma
+suma = 0
+
+# El docente ingresa las notas de todos los estudiantes
+calificaciones_lista = input("Ingrese las calificaciones de los estudiantes separadas por coma: ")
+
+# Se separa la lista de calificaciones y se convierte a enteros
+calificaciones = [int(c.strip()) for c in calificaciones_lista.split(",")]
+
+# Se calcula el promedio de las calificaciones
+cantidad = len(calificaciones)
+suma = sum(calificaciones)  # Usar sum() para simplificar el código
+promedio = suma / cantidad
+
+# Se ordenan las calificaciones de menor a mayor
+calificaciones.sort()
+
+# Se determina la calificación que se repite más veces
+contador_calificaciones = Counter(calificaciones)
+moda = contador_calificaciones.most_common(1)[0][0]
+
+# Se imprime el promedio y la calificación más baja, la más alta y la calificación más repetida
+print("El promedio de las calificaciones es:", promedio)
+print("La calificación más baja es:", calificaciones[0])
+print("La calificación más alta es:", calificaciones[-1])  # Último elemento en la lista ordenada
+print("La calificación más repetida es:", moda)
+
+# Graficar las calificaciones
+contador = Counter(calificaciones)  # Contar la frecuencia de cada calificación
+
+# Preparar los datos para el gráfico
+notas = list(contador.keys())
+frecuencias = list(contador.values())
+
+# Crear el gráfico de barras
+plt.bar(notas, frecuencias, color='skyblue')
+
+# Añadir títulos y etiquetas
+plt.title("Frecuencia de Calificaciones")
+plt.xlabel("Calificaciones")
+plt.ylabel("Frecuencia")
+
+# Mostrar el gráfico
+plt.show()
