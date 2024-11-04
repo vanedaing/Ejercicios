@@ -1,0 +1,10 @@
+#Temperatura en grado Celsius
+temperatura_celsius = 30
+#Conversión a Fahrenheit
+temperatura_fahrenheit = temperatura_celsius * 9/5 + 32
+#Coversión a Kelvin
+temperatura_kelvin = temperatura_celsius + 273.15
+#Impresión de resultados
+print("Temperatura en Celsius:", temperatura_celsius)
+print("Temperatura en Fahrenheit:", temperatura_fahrenheit)
+print("Temperatura en Kelvin:", temperatura_kelvin)
