@@ -1,0 +1,12 @@
+# Primero se determinan las cinco variables, que actuarán como las cinco calificaciones
+a = 1
+b = 2
+c = 4
+d = 3
+e = 5
+
+# Ahora se calcula el promedio, al sumar las cinco calificaciones y luego dividirlas entre cinco
+promedio = (a + b + c + d + e) / 5
+
+# Se muestra en consola el promedio calculado previamente
+print(promedio)
