@@ -1,0 +1,8 @@
+#Eres un desarrollador creando una herramienta educativa que muestra los caracteres ASCII correspondientes a una lista de números. Se recomienda usar la función chr() para convertir los números en caracteres. Enzo González.
+
+numeros_ascii = [65, 66, 67, 68, 69, 70]
+
+caracteres = [chr(num) for num in numeros_ascii]
+
+print("lista de numeros ASCII:", numeros_ascii)
+print("lista de caracteres ASCII:", caracteres)
