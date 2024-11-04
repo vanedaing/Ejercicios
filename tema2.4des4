@@ -1,0 +1,22 @@
+# Verificar múltiplos de varios números
+def es_multiplo(numero):
+    es_multiplo_de_2 = "Sí" if numero % 2 == 0 else "No"
+    es_multiplo_de_3 = "Sí" if numero % 3 == 0 else "No"
+    es_multiplo_de_5 = "Sí" if numero % 5 == 0 else "No"
+    es_multiplo_de_7 = "Sí" if numero % 7 == 0 else "No"
+    es_multiplo_de_9 = "Sí" if numero % 9 == 0 else "No"
+    es_multiplo_de_10 = "Sí" if numero % 10 == 0 else "No"
+    es_multiplo_de_11 = "Sí" if numero % 11 == 0 else "No"
+
+    return es_multiplo_de_2, es_multiplo_de_3, es_multiplo_de_5, es_multiplo_de_7, es_multiplo_de_9, es_multiplo_de_10, es_multiplo_de_11
+
+numero = int(input("Ingrese un número: "))
+
+resultados = es_multiplo(numero)  # Llamada correcta a la función 'es_multiplo'
+print("Es múltiplo de 2:", resultados[0])
+print("Es múltiplo de 3:", resultados[1])
+print("Es múltiplo de 5:", resultados[2])
+print("Es múltiplo de 7:", resultados[3])
+print("Es múltiplo de 9:", resultados[4])
+print("Es múltiplo de 10:", resultados[5])
+print("Es múltiplo de 11:", resultados[6])
