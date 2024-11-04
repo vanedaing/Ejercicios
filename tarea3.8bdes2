@@ -1,0 +1,16 @@
+import random
+import string
+
+def generar_contraseña(longitud=8):
+    # Definir los caracteres que se pueden utilizar en la contraseña
+    caracteres = string.ascii_lowercase + string.ascii_uppercase + string.digits
+    # Generar la contraseña aleatoria
+    contraseña = ''.join(random.choice(caracteres) for _ in range(longitud))
+    return contraseña
+
+# Función principal
+def main():
+    contraseña_generada = generar_contraseña()
+    print("Contraseña aleatoria generada:", contraseña_generada)
+
+main()
