@@ -1,0 +1,12 @@
+def es_palindromo(cadena):
+    # Eliminamos espacios y convertimos a minúsculas
+    cadena = cadena.replace(" ", "").lower()
+    # Retornamos True o False directamente
+    return cadena == cadena[::-1]
+
+# Solicitar al usuario que ingrese una frase
+frase = input("Introduce una frase: ")
+
+# Llamar a la función y mostrar el resultado
+resultado = es_palindromo(frase)
+print(resultado)
