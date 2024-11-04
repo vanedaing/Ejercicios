@@ -1,0 +1,19 @@
+# Inventario inicial
+inventario = ["manzanas", "zanahorias", "espinacas", "brocoli", "cebolla", "kiwis", "frutillas", "apio", "papas"]
+
+# Ordenar el inventario alfabéticamente (Pregunta 7)
+inventario.sort()
+print("\nInventario ordenado alfabéticamente:")
+print(inventario)
+
+# Proporcionar una copia del inventario al nuevo empleado (Pregunta 8)
+inventario_copia = inventario.copy()
+
+# Simulación: El empleado hace cambios en su copia
+inventario_copia.append("naranjas")  # El empleado agrega un producto en su copia
+print("\nCopia del inventario proporcionada al empleado (con cambios):")
+print(inventario_copia)
+
+# Verificar que el inventario original no ha cambiado
+print("\nInventario original después de los cambios en la copia:")
+print(inventario)
