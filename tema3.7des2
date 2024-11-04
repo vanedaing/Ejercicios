@@ -1,0 +1,15 @@
+# Inventario de libros
+inventario_libros = [
+    {"código": 256, "título": "El pricipito"},
+    {"código": 123, "título": "Harry Potter"},
+    {"código": 345, "título": "El Mago de Oz"},
+    {"código": 346, "título": "Hansel y Gretel"}
+]
+
+# Ordenar los libros en orden decreciente según su código
+libros_organizados = sorted(inventario_libros, key=lambda x: x["código"], reverse=True)
+
+# Mostrar la lista de libros ordenados
+print("Lista de libros organizados en orden decreciente")
+for libro in libros_organizados:
+    print(libro)
