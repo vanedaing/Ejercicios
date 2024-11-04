@@ -1,0 +1,15 @@
+#Calculadora simple
+#Pedir al usuario que ingrese dos números(a y b)
+númeroa = float(input("Ingrese el primer número: "))
+númerob = float(input("Ingrese el segundo número: "))
+
+# Calcular la suma, resta, multiplicación y división
+suma = númeroa + númerob
+resta = númeroa - númerob
+multiplicación = númeroa * númerob
+división = númeroa / númerob
+# Imprimir los resultados
+print("Suma:", suma)
+print("Resta:", resta)
+print("Multiplicación:", multiplicación)
+print("División:", división)
