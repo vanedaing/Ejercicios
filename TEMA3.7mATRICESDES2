@@ -1,0 +1,15 @@
+import numpy as np
+
+# Definición de la matriz A
+A = np.array([[1, 0, 1],
+              [4, -1, 4],
+              [5, 6, 7]])
+
+# Calcular la matriz inversa de A
+A_inv = np.linalg.inv(A)
+
+# Calcular la traza de la matriz inversa
+traza_A_inv = np.trace(A_inv)
+
+# Mostrar el resultado
+print("La traza de la matriz inversa de A es:", traza_A_inv)
