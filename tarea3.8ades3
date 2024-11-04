@@ -1,0 +1,39 @@
+'''
+Desafío 3:
+Construye una función que tome dos listas y devuelva True si tienen al menos un elemento en común, de lo contrario, que devuelva False.
+
+Además de cumplir con lo solicitado, muestra la cantidad de elementos en común y cuáles son.
+
+# Autor: Eliana Dalfolo
+'''
+
+# Función que compara las dos listas
+# Devuelve TRUE si tienen al menos un elemento en común, o FALSE si no.
+def comparar_listas(lista1, lista2):
+    elementos_en_comun = list(set(lista1) & set(lista2))  # Conjunto de elementos en común
+    cantidad = len(elementos_en_comun)  # Cantidad de elementos en común
+    encontrado = cantidad > 0  # True si hay al menos un elemento en común
+    return (encontrado, cantidad, elementos_en_comun)
+
+
+# Función principal
+def main():
+    print("\n ------------- INGRESO DE LISTAS --------------\n")
+    entrada1 = input("Introduce la primera lista (separa los elementos con espacios): ")
+    entrada1 = entrada1.split()  # Convierte la cadena en una lista
+    entrada2 = input("\nIntroduce la segunda lista (separa los elementos con espacios): ")
+    entrada2 = entrada2.split()
+    
+    # Llama a la función comparar_listas
+    encont, cant, comun = comparar_listas(entrada1, entrada2)
+    
+    # Muestra los resultados
+    print("\n ------------- RESULTADOS --------------\n")
+    if encont:
+        print(f"Hay elementos en común: {encont}")
+        print(f"La cantidad de elementos en común es: {cant}")
+        print(f"Los elementos en común son: {comun}")
+    else:
+        print("No hay elementos en común.")
+
+main()
