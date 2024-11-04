@@ -1,0 +1,19 @@
+import numpy as np
+
+# Definición de la matriz A
+A = np.array([[1, 2, 3],
+              [4, 5, 6],
+              [7, 8, 9]])
+
+# Calcular la matriz transpuesta de A
+A_T = A.T
+
+# Sumar A y A^T
+resultante = A + A_T
+
+# Calcular el rango de la matriz resultante
+rango = np.linalg.matrix_rank(resultante)
+
+# Mostrar el resultado
+print("La matriz resultante de A + A^T es:\n", resultante)
+print("El rango de la matriz resultante es:", rango)
