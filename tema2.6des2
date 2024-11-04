@@ -1,0 +1,19 @@
+# Se solicita que se ingresen todas las calificaciones separadas por comas
+entrada_calificaciones = input("Ingrese todas las calificaciones separadas por comas (entre 1 y 12) : ")
+
+# Se dividen las calificaciones ingresadas por comas y las convertimos a una lista de números
+calificaciones_lista = [int(calificacion.strip()) for calificacion in entrada_calificaciones.split(',') if calificacion.strip().isdigit()]
+
+# Se verifica si las calificaciones son válidas
+if not calificaciones_lista:
+    print("La calificación debe estar entre 1 y 12. Inténtalo de nuevo")
+else:
+    # Se verifica  si todas las calificaciones están dentro del rango válido (1 a 12)
+    calificaciones_validas = [calificacion for calificacion in calificaciones_lista if 1 <= calificacion <= 12]
+
+    if not calificaciones_validas:
+        print("No se han ingresado calificaciones válidas dentro del rango (1 a 12).")
+    else:
+        # Calculamos el promedio de las calificaciones válidas
+        promedio = sum(calificaciones_validas) / len(calificaciones_validas)
+        print(f"El promedio de las calificaciones es: {promedio}")
