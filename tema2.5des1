@@ -1,0 +1,4 @@
+#Saludo personalizado
+nombre = input("Por favor ingrese su nombre: ")
+ciudad = input("Por favor ingrese su ciudad de orígen: ")
+print("Hola,", nombre, "de la maravillosa ciudad de", ciudad)
