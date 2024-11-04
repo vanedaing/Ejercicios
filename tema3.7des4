@@ -1,0 +1,34 @@
+from collections import Counter
+
+#Se inicia la variable suma
+suma = 0
+
+
+#el docente ingresa las notas de todos los estudiantes
+
+calificaciones_lista = input("Ingrese las calificaciones de los estudiantes separadas por coma: ")
+
+#Se separa la lista de calificaciones
+calificaciones = calificaciones_lista.split(",")
+
+#Se calcula el promedio de las calificaciones
+
+cantidad=len(calificaciones)
+for calificacion in calificaciones:
+  suma += int(calificacion)
+promedio = suma/cantidad
+
+#Se ordenan las calificaciones de menor a mayor
+calificaciones.sort()
+
+
+# Se determina la calificación que se repite más veces
+
+contador_calificaciones = Counter(calificaciones)
+moda = contador_calificaciones.most_common(1)[0][0]
+  
+#Se imprime el promedio y la calificacion mas baja, la más alta y la calificación más repetida
+print("El promedio de las calificaciones es:", promedio)
+print("La calificación mas baja es:", calificaciones[0])
+print("La calificación mas alta es:", calificaciones[cantidad-1])
+print("la calificación más repetida es: ", moda)
