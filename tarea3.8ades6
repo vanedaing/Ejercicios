@@ -1,0 +1,37 @@
+#Desafío 6: Verificación y Cálculo de Números Primos
+
+# Se crea función que verifica  si un número es primo
+def es_primo(n):
+    """Verifica si un número es primo."""
+    if n <= 1:
+        return False
+    for i in range(2, int(n**0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
+
+# Se crea función para  contar los números primos en una lista
+def contar_primos(lista):
+    """Cuenta la cantidad de números primos en una lista dada."""
+    return sum(1 for num in lista if es_primo(num))
+
+# Función principal
+def main():
+    """Función principal que integra las funciones y muestra resultados."""
+    # Ejemplo de lista de números
+    lista_numeros = [1,2,3,11,22,23,48,32]
+    
+    # Verificar si un número es primo
+    numero = 1
+    if es_primo(numero):
+        print(f"{numero} es un número primo.")
+    else:
+        print(f"{numero} no es un número primo.")
+    
+    # Contar números primos en la lista
+    cantidad_primos = contar_primos(lista_numeros)
+    print(f"La cantidad de números primos en la lista es: {cantidad_primos}")
+
+# Ejecutar la función principal
+if __name__ == "__main__":
+    main()
