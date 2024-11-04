@@ -1,0 +1,25 @@
+#Desafío 1:
+#Crea una función que tome una lista de números y devuelva la suma y el promedio de esos números.
+# Función para calcular la suma y el promedio de una lista de números
+def suma_y_promedio(numeros):
+    """Devuelve la suma y el promedio de los números de la lista."""
+    suma = sum(numeros)
+    promedio = suma / len(numeros) if numeros else 0  # Evitar división por 0
+    return suma, promedio
+
+# Función principal
+def main():
+    """Función principal que muestra la suma y promedio de una lista de números."""
+    # Posible lista de números
+    lista_numeros = [25,30,15,37]
+    
+    # Obtener la suma y el promedio
+    suma, promedio = suma_y_promedio(lista_numeros)
+    
+    # Mostrar resultados
+    print(f"Suma de números = {suma}")
+    print(f"Promedio de números = {promedio}")
+
+# Ejecutar la función principal
+if __name__ == "__main__":
+    main()
