@@ -1,0 +1,11 @@
+#Diseña una función que tome una cadena y devuelva la misma, pero con el primer carácter de cada palabra en mayúsculas.
+def primera_mayuscula(cadena):
+    
+    palabras = cadena.split()  # Divide la cadena en palabras
+    palabras_capitalizadas = [palabra.capitalize() for palabra in palabras]  # Capitaliza cada palabra
+    return ' '.join(palabras_capitalizadas)  # Une las palabras nuevamente en una cadena
+
+# Ejemplos
+print(primera_mayuscula("soy vanessa ingold")) 
+print(primera_mayuscula("vivo en trinidad")) 
+print(primera_mayuscula("soy maestra")) 
