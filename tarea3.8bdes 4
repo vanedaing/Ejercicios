@@ -1,0 +1,50 @@
+# Importamos los módulos necesarios
+from collections import Counter
+import matplotlib.pyplot as plt
+
+# Función para analizar el texto
+def analizar_texto(texto):
+    # Convertimos el texto a minúsculas y lo separamos en palabras
+    palabras = texto.lower().split()
+    
+    # Contamos la frecuencia de cada palabra
+    contador_palabras = Counter(palabras)
+    
+    # Obtenemos las 10 palabras más comunes
+    palabras_comunes = contador_palabras.most_common(10)
+    
+    # Mostramos las estadísticas en la consola
+    print("Las 10 palabras más comunes y su frecuencia:")
+    for palabra, frecuencia in palabras_comunes:
+        print(f"{palabra}: {frecuencia}")
+    
+    return palabras_comunes
+
+# Función para crear un gráfico de barras
+def crear_grafico(palabras_comunes):
+    # Separar palabras y frecuencias para el gráfico
+    palabras, frecuencias = zip(*palabras_comunes)
+    
+    # Crear el gráfico de barras
+    plt.figure(figsize=(10, 6))
+    plt.bar(palabras, frecuencias, color='skyblue')
+    plt.xlabel("Palabras")
+    plt.ylabel("Frecuencia")
+    plt.title("Frecuencia de las 10 palabras más comunes")
+    plt.xticks(rotation=45)
+    plt.show()
+
+# Función principal
+def main():
+    # Texto de ejemplo o pedir al usuario que ingrese un texto
+    texto = input("Introduce el texto que deseas analizar: ")
+    
+    # Analizar el texto
+    palabras_comunes = analizar_texto(texto)
+    
+    # Crear gráfico de barras
+    crear_grafico(palabras_comunes)
+
+# Ejecutar el programa principal
+if __name__ == "__main__":
+    main()
