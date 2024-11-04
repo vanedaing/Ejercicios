@@ -1,0 +1,6 @@
+ # Desafío: generar números aleatorios entre 1 y 100 utilizando el modelo random
+import random
+#Genera el número aleatorio entre 1 y 100
+numero_aleatorio = random.randint(1,100)
+#Muestra el número aleatorio generado
+print("Número aleatorio:", numero_aleatorio )
