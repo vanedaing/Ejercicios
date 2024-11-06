@@ -1,0 +1,11 @@
+# procesador_texto.py
+
+# Función para resaltar texto en negrita
+def negrita(texto):
+    return f'\033[1m{texto}\033[0m'
+
+# Función para resaltar recursivamente una palabra clave
+def resaltar_palabra(texto, palabra_clave):
+    if palabra_clave in texto:
+        return texto.replace(palabra_clave, negrita(palabra_clave))
+    return texto
