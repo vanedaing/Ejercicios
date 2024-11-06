@@ -1,0 +1,28 @@
+# main.py
+
+# Importamos las funciones del módulo formato_texto
+import formato_texto
+
+def main():
+    texto = input("Introduce el texto que deseas formatear: ")
+
+    print("\n--- Opciones de formato ---")
+    print("1. Negrita")
+    print("2. Subrayado")
+    print("3. Color de texto")
+
+    opcion = input("\nElige el número de la opción que deseas aplicar: ")
+
+    if opcion == "1":
+        print("\nTexto en Negrita:", formato_texto.negrita(texto))
+    elif opcion == "2":
+        print("\nTexto Subrayado:", formato_texto.subrayado(texto))
+    elif opcion == "3":
+        color = input("Elige un color de texto (rojo, verde, amarillo, azul, magenta, cian, blanco): ")
+        print("\nTexto con Color:", formato_texto.color(texto, color))
+    else:
+        print("Opción no válida.")
+
+# Ejecutar el programa principal
+if __name__ == "__main__":
+    main()
