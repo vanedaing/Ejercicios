@@ -1,0 +1,51 @@
+# Importamos módulos necesarios
+import os
+
+# Función para guardar texto en un archivo
+def guardar_archivo(nombre_archivo, texto):
+    with open(nombre_archivo, 'w') as archivo:
+        archivo.write(texto)
+    print(f"El archivo '{nombre_archivo}' ha sido guardado exitosamente.")
+
+# Función para leer un archivo existente
+def leer_archivo(nombre_archivo):
+    if os.path.exists(nombre_archivo):  # Verifica si el archivo existe
+        with open(nombre_archivo, 'r') as archivo:
+            contenido = archivo.read()
+        return contenido
+    else:
+        print("El archivo no existe.")
+        return None
+
+# Función principal del procesador de texto
+def main():
+    while True:
+        print("\n--- PROCESADOR DE TEXTO ---")
+        print("1. Escribir y guardar un archivo")
+        print("2. Leer un archivo existente")
+        print("3. Salir")
+
+        opcion = input("Elige una opción: ")
+
+        if opcion == "1":
+            texto = input("Escribe el texto que deseas guardar: ")
+            nombre_archivo = input("Introduce el nombre del archivo para guardar (incluye .txt): ")
+            guardar_archivo(nombre_archivo, texto)
+
+        elif opcion == "2":
+            nombre_archivo = input("Introduce el nombre del archivo a leer (incluye .txt): ")
+            contenido = leer_archivo(nombre_archivo)
+            if contenido is not None:
+                print("\n--- CONTENIDO DEL ARCHIVO ---")
+                print(contenido)
+
+        elif opcion == "3":
+            print("Saliendo del procesador de texto.")
+            break
+
+        else:
+            print("Opción no válida. Por favor, elige una opción del 1 al 3.")
+
+# Ejecutar el programa principal
+if __name__ == "__main__":
+    main()
