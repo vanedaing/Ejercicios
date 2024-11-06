@@ -1,0 +1,22 @@
+def mono_contando_platanos(total_platanos):
+  """
+  Simula a un mono contando plátanos de forma recursiva, olvidando el conteo anterior cada vez.
+
+  Args:
+    total_platanos: El número total de plátanos a contar.
+
+  Returns:
+    int: El número total de veces que el mono dijo "uno".
+  """
+
+  if total_platanos <= 0:
+    return 0  # Si no hay plátanos, el mono no cuenta nada
+  else:
+    print("El mono cuenta un plátano.")
+    # El mono olvida y vuelve a contar desde el principio para este plátano
+    return 1 + mono_contando_platanos(total_platanos - 1)  # Resta 1 al total de plátanos
+
+# Ejemplo de uso:
+total_platanos = 15
+contador = mono_contando_platanos(total_platanos)
+print("El mono contó 'uno' un total de", contador, "veces.")
