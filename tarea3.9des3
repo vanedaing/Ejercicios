@@ -1,0 +1,19 @@
+def invertir_oracion(oracion):
+    # Divide la oración en la primera palabra y el resto de la oración
+    espacio = oracion.find(" ")
+
+    # Caso base: si no hay espacios, es la última palabra
+    if espacio == -1:
+        return oracion
+
+    # Toma la primera palabra y llama recursivamente al resto de la oración
+    primera_palabra = oracion[:espacio]
+    resto_oracion = oracion[espacio + 1:]
+
+    # Invierte las palabras y las combina en orden inverso
+    return invertir_oracion(resto_oracion) + " " + primera_palabra
+
+# Prueba de la función
+oracion = "Soy Vanessa Ingol"
+oracion_invertida = invertir_oracion(oracion)
+print("Oración invertida:", oracion_invertida)
