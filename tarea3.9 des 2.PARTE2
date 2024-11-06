@@ -1,0 +1,18 @@
+# main.py
+
+import procesador_texto
+
+def main():
+    texto = input("Introduce el texto largo donde deseas resaltar la palabra clave: ")
+    palabra_clave = input("Introduce la palabra clave a resaltar: ")
+
+    # Resalta todas las ocurrencias de la palabra clave en el texto
+    texto_resaltado = procesador_texto.resaltar_palabra(texto, palabra_clave)
+
+    # Muestra el texto con las palabras resaltadas
+    print("\nTexto con palabras resaltadas:")
+    print(texto_resaltado)
+
+# Ejecuta el programa principal
+if __name__ == "__main__":
+    main()
