@@ -1,0 +1,16 @@
+def eliminar_duplicados(lista):
+    # Usamos set() para eliminar duplicados, ya que un conjunto no permite elementos repetidos
+    lista_sin_duplicados = list(set(lista))
+    return lista_sin_duplicados
+
+# Lista con algunos elementos repetidos
+lista_original = [1, 2, 3, 2, 4, 5, 3, 6, 1]
+
+# Mostrar la lista original
+print("Lista original:", lista_original)
+
+# Eliminar duplicados
+lista_sin_duplicados = eliminar_duplicados(lista_original)
+
+# Mostrar la lista sin duplicados
+print("Lista sin duplicados:", lista_sin_duplicados)
