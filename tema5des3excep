@@ -1,0 +1,31 @@
+def calcular_factorial(num):
+    try:
+        # Verificamos que sea un número entero
+        num = int(num)
+        
+        # Verificamos que el número sea positivo
+        if num < 0:
+            raise ValueError("Error: El número debe ser un entero positivo.")
+        
+        # Calculamos el factorial usando un ciclo
+        factorial = 1
+        for i in range(1, num + 1):
+            factorial *= i
+            
+        return factorial
+
+    except ValueError as ve:
+        # Manejamos el caso en que el número sea negativo o no se pueda convertir a entero
+        print(ve)
+    except OverflowError:
+        # Manejamos el caso en que el número sea demasiado grande para calcular el factorial
+        print("Error: El número es demasiado grande para calcular el factorial.")
+    except TypeError:
+        # Manejamos el caso en que la entrada no sea un número
+        print("Error: La entrada debe ser un número.")
+
+# Ejemplo de uso
+numero = input("Introduce un número entero positivo: ")
+resultado = calcular_factorial(numero)
+if resultado is not None:
+    print(f"El factorial de {numero} es: {resultado}")
