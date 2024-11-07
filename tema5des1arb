@@ -1,0 +1,35 @@
+# Definición del nodo del árbol binario
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierda = None
+        self.derecha = None
+
+# Función para crear el árbol
+def crear_arbol():
+    # Nivel 1 (Raíz)
+    raiz = Nodo(1)
+
+    # Nivel 2
+    raiz.izquierda = Nodo(2)
+    raiz.derecha = Nodo(3)
+
+    # Nivel 3
+    raiz.izquierda.izquierda = Nodo(4)
+    raiz.izquierda.derecha = Nodo(5)
+    raiz.derecha.izquierda = Nodo(6)
+    raiz.derecha.derecha = Nodo(7)
+
+    return raiz
+
+# Función para realizar el recorrido en preorden
+def recorrido_preorden(nodo):
+    if nodo:
+        print(nodo.valor, end=' ')
+        recorrido_preorden(nodo.izquierda)
+        recorrido_preorden(nodo.derecha)
+
+# Crear el árbol y realizar el recorrido
+arbol = crear_arbol()
+print("Recorrido en preorden:")
+recorrido_preorden(arbol)
