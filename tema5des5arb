@@ -1,0 +1,77 @@
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierda = None
+        self.derecha = None
+
+# Función para definir la precedencia de los operadores
+def precedencia(operador):
+    if operador == '+' or operador == '-':
+        return 1
+    if operador == '*' or operador == '/':
+        return 2
+    return 0
+
+# Función para construir el árbol de expresiones
+def construir_arbol(expresion):
+    operadores = set(['+', '-', '*', '/'])
+    pila_valores = []  # Pila para operandos
+    pila_operadores = []  # Pila para operadores
+
+    # Recorremos la expresión
+    for token in expresion.split():
+        if token.isdigit():  # Si es un número, lo agregamos como nodo
+            pila_valores.append(Nodo(int(token)))
+        elif token in operadores:
+            # Mientras que el operador en la pila de operadores tenga mayor o igual precedencia que el actual
+            while (pila_operadores and precedencia(pila_operadores[-1]) >= precedencia(token)):
+                operador = pila_operadores.pop()
+                derecho = pila_valores.pop()
+                izquierdo = pila_valores.pop()
+                nodo = Nodo(operador)
+                nodo.izquierda = izquierdo
+                nodo.derecha = derecho
+                pila_valores.append(nodo)
+            pila_operadores.append(token)
+    
+    # Ahora vaciamos las pilas
+    while pila_operadores:
+        operador = pila_operadores.pop()
+        derecho = pila_valores.pop()
+        izquierdo = pila_valores.pop()
+        nodo = Nodo(operador)
+        nodo.izquierda = izquierdo
+        nodo.derecha = derecho
+        pila_valores.append(nodo)
+
+    return pila_valores[0]  # El único nodo que queda es la raíz del árbol
+
+# Función para evaluar el árbol de expresiones
+def evaluar_arbol(raiz):
+    # Si el nodo es un número, simplemente devolvemos su valor
+    if raiz.izquierda is None and raiz.derecha is None:
+        return raiz.valor
+    
+    # Evaluamos el subárbol izquierdo y derecho
+    izquierda = evaluar_arbol(raiz.izquierda)
+    derecha = evaluar_arbol(raiz.derecha)
+
+    # Realizamos la operación según el operador en el nodo
+    if raiz.valor == '+':
+        return izquierda + derecha
+    elif raiz.valor == '-':
+        return izquierda - derecha
+    elif raiz.valor == '*':
+        return izquierda * derecha
+    elif raiz.valor == '/':
+        return izquierda / derecha
+
+# Función para evaluar una expresión matemática
+def evaluar_expresion(expresion):
+    arbol = construir_arbol(expresion)
+    return evaluar_arbol(arbol)
+
+# Ejemplo de uso:
+expresion = "5 + 3 * 4"
+resultado = evaluar_expresion(expresion)
+print(f"El resultado de la expresión '{expresion}' es: {resultado}")
