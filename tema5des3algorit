@@ -1,0 +1,22 @@
+def buscar_estudiante(lista_estudiantes, nombre_buscado):
+    inicio = 0
+    fin = len(lista_estudiantes) - 1
+
+    while inicio <= fin:
+        medio = (inicio + fin) // 2
+        estudiante_actual = lista_estudiantes[medio]
+
+        if estudiante_actual == nombre_buscado:
+            return f"El estudiante '{nombre_buscado}' se encuentra en la posición {medio}."
+        elif estudiante_actual < nombre_buscado:
+            inicio = medio + 1
+        else:
+            fin = medio - 1
+
+    return f"El estudiante '{nombre_buscado}' no está en la lista."
+
+# Ejemplo de uso:
+lista_estudiantes = ["Ana", "Carlos", "Daniel", "Elena", "Luis", "María", "Pedro", "Sofía"]
+nombre_buscado = "Luis"
+resultado = buscar_estudiante(lista_estudiantes, nombre_buscado)
+print(resultado)
