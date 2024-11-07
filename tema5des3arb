@@ -1,0 +1,40 @@
+# Definición del nodo del árbol binario
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierda = None
+        self.derecha = None
+
+# Función para crear el árbol
+def crear_arbol():
+    # Nivel 1 (Raíz)
+    raiz = Nodo(10)
+
+    # Nivel 2
+    raiz.izquierda = Nodo(5)
+    raiz.derecha = Nodo(15)
+
+    # Nivel 3
+    raiz.izquierda.izquierda = Nodo(2)
+    raiz.izquierda.derecha = Nodo(7)
+    raiz.derecha.izquierda = Nodo(12)
+    raiz.derecha.derecha = Nodo(20)
+
+    return raiz
+
+# Función para recorrer el árbol en postorden y devolver el valor máximo
+def maximo_postorden(nodo):
+    if nodo is None:
+        return float('-inf')  # Devuelve un valor muy pequeño si el nodo es None
+    
+    # Recorrer el árbol en postorden: izquierda, derecha, raíz
+    max_izquierda = maximo_postorden(nodo.izquierda)
+    max_derecha = maximo_postorden(nodo.derecha)
+    
+    # El máximo de los nodos es el mayor entre el valor del nodo actual y los máximos de las ramas
+    return max(nodo.valor, max_izquierda, max_derecha)
+
+# Crear el árbol y encontrar el valor máximo
+arbol = crear_arbol()
+resultado = maximo_postorden(arbol)
+print("El valor máximo en el árbol es:", resultado)
