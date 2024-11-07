@@ -1,13 +1,13 @@
 def calcular_factorial(num):
     try:
-        # Verificamos que sea un número entero
+        # Verificamos si el número ingresado es un entero positivo
+        if not num.isdigit() or int(num) < 0:
+            raise ValueError("Error: Debes ingresar un número entero positivo.")
+
+        # Convertimos el número a entero
         num = int(num)
-        
-        # Verificamos que el número sea positivo
-        if num < 0:
-            raise ValueError("Error: El número debe ser un entero positivo.")
-        
-        # Calculamos el factorial usando un ciclo
+
+        # Calculamos el factorial
         factorial = 1
         for i in range(1, num + 1):
             factorial *= i
@@ -22,7 +22,7 @@ def calcular_factorial(num):
         print("Error: El número es demasiado grande para calcular el factorial.")
     except TypeError:
         # Manejamos el caso en que la entrada no sea un número
-        print("Error: La entrada debe ser un número.")
+        print("Error: La entrada debe ser un número entero positivo.")
 
 # Ejemplo de uso
 numero = input("Introduce un número entero positivo: ")
