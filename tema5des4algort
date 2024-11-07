@@ -1,0 +1,32 @@
+# Lista de estudiantes y sus promedios
+estudiantes = [
+    {"nombre": "Ana", "promedio": 85},
+    {"nombre": "Carlos", "promedio": 92},
+    {"nombre": "Daniel", "promedio": 78},
+    {"nombre": "Elena", "promedio": 88},
+    {"nombre": "Luis", "promedio": 95},
+    {"nombre": "María", "promedio": 80}
+]
+
+# Función para ordenar por selección según el promedio
+def ordenar_por_promedio(estudiantes):
+    n = len(estudiantes)
+    
+    for i in range(n - 1):
+        max_index = i  # Inicialmente asumimos que el mayor promedio está en la posición i
+        
+        # Encontrar el índice con el mayor promedio en el resto de la lista
+        for j in range(i + 1, n):
+            if estudiantes[j]["promedio"] > estudiantes[max_index]["promedio"]:
+                max_index = j
+        
+        # Intercambiar al estudiante con el mayor promedio encontrado con el de la posición i
+        estudiantes[i], estudiantes[max_index] = estudiantes[max_index], estudiantes[i]
+
+# Ordenar la lista de estudiantes por promedio de calificaciones
+ordenar_por_promedio(estudiantes)
+
+# Mostrar el resultado
+print("Estudiantes ordenados por promedio (de mayor a menor):")
+for estudiante in estudiantes:
+    print(f"{estudiante['nombre']}: {estudiante['promedio']}")
