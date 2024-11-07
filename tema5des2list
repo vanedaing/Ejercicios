@@ -1,0 +1,20 @@
+def buscar_codigo(codigo, lista_codigos):
+    if codigo in lista_codigos:
+        return lista_codigos.index(codigo)  # Devuelve la posición en la lista
+    else:
+        return None  # Indica que no se encuentra en la lista
+
+# Lista de códigos de productos
+codigos_productos = ['A123', 'B456', 'C789', 'D012', 'E345']
+
+# Solicitar al usuario que ingrese un código de producto
+codigo_usuario = input("Ingresa el código del producto: ")
+
+# Buscar el código en la lista
+posicion = buscar_codigo(codigo_usuario, codigos_productos)
+
+# Mostrar el resultado
+if posicion is not None:
+    print(f"El código '{codigo_usuario}' se encuentra en la posición {posicion}.")
+else:
+    print(f"El código '{codigo_usuario}' no se encuentra en la lista.")
