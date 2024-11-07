@@ -1,0 +1,67 @@
+# Clase Nodo para representar cada estudiante en el árbol
+class Nodo:
+    def __init__(self, nombre, promedio):
+        self.nombre = nombre
+        self.promedio = promedio
+        self.izquierda = None
+        self.derecha = None
+
+# Clase Árbol Binario de Búsqueda
+class ArbolDeRendimiento:
+    def __init__(self):
+        self.raiz = None
+
+    # Método para insertar un nuevo nodo en el árbol
+    def insertar(self, nombre, promedio):
+        if self.raiz is None:
+            self.raiz = Nodo(nombre, promedio)
+        else:
+            self._insertar_recursivo(self.raiz, nombre, promedio)
+
+    def _insertar_recursivo(self, nodo, nombre, promedio):
+        # Si el promedio es menor, va al subárbol izquierdo
+        if promedio < nodo.promedio:
+            if nodo.izquierda is None:
+                nodo.izquierda = Nodo(nombre, promedio)
+            else:
+                self._insertar_recursivo(nodo.izquierda, nombre, promedio)
+        # Si el promedio es mayor, va al subárbol derecho
+        else:
+            if nodo.derecha is None:
+                nodo.derecha = Nodo(nombre, promedio)
+            else:
+                self._insertar_recursivo(nodo.derecha, nombre, promedio)
+
+    # Recorrido en inorden para mostrar estudiantes en orden ascendente
+    def recorrer_inorden(self):
+        self._recorrer_inorden_recursivo(self.raiz)
+
+    def _recorrer_inorden_recursivo(self, nodo):
+        if nodo is not None:
+            # Primero, recorre el subárbol izquierdo
+            self._recorrer_inorden_recursivo(nodo.izquierda)
+            # Luego, muestra el nodo actual
+            print(f"Estudiante: {nodo.nombre}, Promedio: {nodo.promedio}")
+            # Finalmente, recorre el subárbol derecho
+            self._recorrer_inorden_recursivo(nodo.derecha)
+
+# Ejemplo de uso
+estudiantes = [
+    {"nombre": "Ana", "promedio": 85},
+    {"nombre": "Carlos", "promedio": 92},
+    {"nombre": "Daniel", "promedio": 78},
+    {"nombre": "Elena", "promedio": 88},
+    {"nombre": "Luis", "promedio": 95},
+    {"nombre": "María", "promedio": 80}
+]
+
+# Crear el árbol de rendimiento
+arbol = ArbolDeRendimiento()
+
+# Insertar estudiantes en el árbol
+for estudiante in estudiantes:
+    arbol.insertar(estudiante["nombre"], estudiante["promedio"])
+
+# Mostrar estudiantes en orden ascendente de rendimiento
+print("Estudiantes ordenados por rendimiento académico:")
+arbol.recorrer_inorden()
