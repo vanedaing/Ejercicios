@@ -1,0 +1,24 @@
+def leer_archivo(nombre_archivo):
+    try:
+        # Intenta abrir el archivo en modo de lectura
+        archivo = open(nombre_archivo, 'r')
+        contenido = archivo.read()
+        print("Contenido del archivo:")
+        print(contenido)
+    except FileNotFoundError:
+        # Excepción para el caso de que el archivo no exista
+        print(f"Error: El archivo '{nombre_archivo}' no existe.")
+    except Exception as e:
+        # Captura cualquier otra excepción inesperada
+        print(f"Ha ocurrido un error inesperado: {e}")
+    finally:
+        # Cierra el archivo en cualquier caso, si fue abierto
+        try:
+            archivo.close()
+        except NameError:
+            # Evita el error si 'archivo' nunca se llegó a definir
+            pass
+
+# Ejemplo de uso
+nombre_archivo = input("Ingresa el nombre del archivo a leer: ")
+leer_archivo(nombre_archivo)
