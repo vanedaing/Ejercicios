@@ -1,0 +1,34 @@
+def operaciones_matematicas(valores):
+    try:
+        # Convertimos todos los elementos a float para realizar operaciones
+        numeros = [float(valor) for valor in valores]
+
+        # Calculamos la suma de los valores
+        suma = sum(numeros)
+        print(f"Suma de los valores: {suma}")
+
+        # Calculamos el promedio, manejando la división por cero
+        promedio = suma / len(numeros)
+        print(f"Promedio de los valores: {promedio}")
+
+        # Calculamos el producto de todos los valores
+        producto = 1
+        for numero in numeros:
+            producto *= numero
+        print(f"Producto de los valores: {producto}")
+
+    except ZeroDivisionError:
+        # Se produce si la lista está vacía (no hay elementos para promediar)
+        print("Error: No se puede calcular el promedio de una lista vacía.")
+
+    except ValueError:
+        # Se produce si algún elemento de la lista no es un número
+        print("Error: La lista debe contener solo valores numéricos.")
+
+    except TypeError:
+        # Se produce si la lista contiene elementos no numéricos que no pueden convertirse a float
+        print("Error: Todos los elementos deben ser números o convertibles a números.")
+
+# Ejemplo de uso
+valores = input("Introduce una lista de valores separados por espacios: ").split()
+operaciones_matematicas(valores)
