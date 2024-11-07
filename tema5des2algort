@@ -1,0 +1,22 @@
+def buscar_calificacion(matriz, calificacion_buscada):
+    for estudiante_idx, estudiante in enumerate(matriz):
+        for materia_idx, calificacion in enumerate(estudiante):
+            if calificacion == calificacion_buscada:
+                return (estudiante_idx, materia_idx)
+    return None
+
+# Ejemplo de uso:
+tabla_calificaciones = [
+    [85, 90, 78],  # Calificaciones del estudiante 0
+    [88, 92, 80],  # Calificaciones del estudiante 1
+    [75, 85, 89]   # Calificaciones del estudiante 2
+]
+
+calificacion_buscada = 92
+resultado = buscar_calificacion(tabla_calificaciones, calificacion_buscada)
+
+if resultado:
+    estudiante, materia = resultado
+    print(f"La calificación {calificacion_buscada} se encuentra en el estudiante {estudiante}, materia {materia}.")
+else:
+    print(f"La calificación {calificacion_buscada} no se encontró en la tabla.")
