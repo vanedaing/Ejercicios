@@ -1,0 +1,62 @@
+# Definición del nodo del árbol binario de búsqueda
+class Nodo:
+    def __init__(self, valor):
+        self.valor = valor
+        self.izquierda = None
+        self.derecha = None
+
+# Función para insertar un valor en el ABB
+def insertar(raiz, valor):
+    # Si el árbol está vacío, creamos un nuevo nodo
+    if raiz is None:
+        return Nodo(valor)
+    
+    # Si el valor es menor que el valor del nodo, insertamos en el subárbol izquierdo
+    if valor < raiz.valor:
+        raiz.izquierda = insertar(raiz.izquierda, valor)
+    # Si el valor es mayor que el valor del nodo, insertamos en el subárbol derecho
+    elif valor > raiz.valor:
+        raiz.derecha = insertar(raiz.derecha, valor)
+    
+    # Devolvemos la raíz (sin cambios si no se insertó un nuevo nodo)
+    return raiz
+
+# Función para buscar un valor en el ABB
+def buscar(raiz, valor):
+    # Si el nodo es None, el valor no está en el árbol
+    if raiz is None:
+        return False
+    
+    # Si el valor es igual al valor del nodo, lo encontramos
+    if valor == raiz.valor:
+        return True
+    
+    # Si el valor es menor que el valor del nodo, lo buscamos en el subárbol izquierdo
+    elif valor < raiz.valor:
+        return buscar(raiz.izquierda, valor)
+    
+    # Si el valor es mayor que el valor del nodo, lo buscamos en el subárbol derecho
+    else:
+        return buscar(raiz.derecha, valor)
+
+# Función para construir un ABB a partir de un conjunto de números únicos
+def construir_abb(valores):
+    raiz = None
+    for valor in valores:
+        raiz = insertar(raiz, valor)
+    return raiz
+
+# Ejemplo de uso:
+# Un conjunto de números enteros únicos
+numeros = {10, 20, 5, 15, 30, 25, 35}
+
+# Construimos el ABB
+arbol = construir_abb(numeros)
+
+# Buscamos algunos valores en el ABB
+valores_a_buscar = [15, 40, 5, 25]
+for valor in valores_a_buscar:
+    if buscar(arbol, valor):
+        print(f"El valor {valor} existe en el árbol.")
+    else:
+        print(f"El valor {valor} NO existe en el árbol.")
