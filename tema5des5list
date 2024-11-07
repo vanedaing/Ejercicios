@@ -1,0 +1,5 @@
+# Crear la lista de potencias de 2 usando list comprehension
+potencias = [2 ** i for i in range(10)]
+
+# Imprimir la lista resultante
+print(potencias)
