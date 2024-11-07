@@ -1,0 +1,23 @@
+def sumar_listas(lista1, lista2):
+    # Determinamos la longitud máxima entre las dos listas
+    longitud_maxima = max(len(lista1), len(lista2))
+    
+    # Creamos una lista para almacenar los resultados de la suma
+    resultado = []
+    
+    # Sumamos los elementos de ambas listas en las posiciones correspondientes
+    for i in range(longitud_maxima):
+        # Si una lista es más corta, asumimos que su valor en esa posición es 0
+        valor1 = lista1[i] if i < len(lista1) else 0
+        valor2 = lista2[i] if i < len(lista2) else 0
+        resultado.append(valor1 + valor2)
+    
+    return resultado
+
+# Ejemplo de uso
+lista1 = [1, 2, 3, 4]
+lista2 = [5, 6, 7]
+
+# Mostrar el resultado de la suma
+resultado = sumar_listas(lista1, lista2)
+print(f"El resultado de la suma de las listas es: {resultado}")
