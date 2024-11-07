@@ -1,0 +1,37 @@
+class Nodo:
+    def __init__(self, grado, estudiantes):
+        self.grado = grado  # El grado escolar
+        self.estudiantes = estudiantes  # Lista de estudiantes en ese grado
+        self.hijos = []  # Hijos: los grados inferiores
+
+    def agregar_hijo(self, nodo):
+        self.hijos.append(nodo)
+
+# Función para realizar el recorrido por niveles
+def recorrido_por_niveles(raiz):
+    # Usamos una cola para implementar el recorrido por niveles
+    cola = [raiz]
+    
+    while cola:
+        nodo_actual = cola.pop(0)  # Tomamos el primer nodo de la cola
+        print(f"Grado {nodo_actual.grado}: {', '.join(nodo_actual.estudiantes)}")
+        
+        # Agregamos los hijos del nodo actual a la cola para procesarlos
+        for hijo in nodo_actual.hijos:
+            cola.append(hijo)
+
+# Crear el árbol con los grados y estudiantes
+grado_12 = Nodo(12, ["Estudiante A", "Estudiante B", "Estudiante C"])
+grado_11 = Nodo(11, ["Estudiante D", "Estudiante E"])
+grado_10 = Nodo(10, ["Estudiante F", "Estudiante G", "Estudiante H", "Estudiante I"])
+grado_9 = Nodo(9, ["Estudiante J", "Estudiante K"])
+grado_1 = Nodo(1, ["Estudiante L", "Estudiante M"])
+
+# Agregar los nodos a su respectivo grado
+grado_12.agregar_hijo(grado_11)
+grado_11.agregar_hijo(grado_10)
+grado_10.agregar_hijo(grado_9)
+grado_9.agregar_hijo(grado_1)
+
+# Realizar el recorrido por niveles (comenzando desde el grado 12 hacia el grado 1)
+recorrido_por_niveles(grado_12)
