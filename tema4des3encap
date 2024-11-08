@@ -1,0 +1,81 @@
+Claro, te explico paso a paso cómo funciona el código:
+
+### 1. **La clase `Autor`:**
+
+La clase `Autor` está pensada para representar a un autor, con dos atributos privados: `nombre` y `nacionalidad`. Estos atributos son privados porque sus nombres comienzan con un guion bajo (por convención en Python: `_nombre` y `_nacionalidad`). Esto es para indicar que no se deberían acceder directamente desde fuera de la clase.
+
+### 2. **El Constructor `__init__`:**
+
+```python
+def __init__(self, nombre, nacionalidad):
+    self._nombre = nombre
+    self._nacionalidad = nacionalidad
+```
+
+Este método es el constructor de la clase. Se ejecuta cuando se crea una nueva instancia de `Autor`. Los parámetros `nombre` y `nacionalidad` se pasan al constructor y se asignan a los atributos privados `_nombre` y `_nacionalidad` respectivamente.
+
+### 3. **Decoradores `@property`:**
+
+#### a) **`@property` en el método `nombre`:**
+
+```python
+@property
+def nombre(self):
+    return self._nombre
+```
+
+El decorador `@property` convierte el método `nombre` en un **getter**. Un **getter** es una función que permite obtener (leer) el valor de un atributo privado de una clase. En este caso, al usar el decorador `@property` sobre el método `nombre`, se puede acceder al valor del atributo privado `_nombre` sin necesidad de usar directamente el atributo privado.
+
+Por ejemplo, al hacer `autor.nombre`, se ejecuta este método `nombre` y devuelve el valor de `_nombre`.
+
+#### b) **`@property` en el método `nacionalidad`:**
+
+Lo mismo ocurre con la propiedad `nacionalidad`, que es también un getter para el atributo privado `_nacionalidad`:
+
+```python
+@property
+def nacionalidad(self):
+    return self._nacionalidad
+```
+
+### 4. **Decoradores `@nombre.setter` y `@nacionalidad.setter`:**
+
+#### a) **`@nombre.setter`:**
+
+```python
+@nombre.setter
+def nombre(self, valor):
+    if isinstance(valor, str) and valor.strip():
+        self._nombre = valor
+    else:
+        raise ValueError("El nombre debe ser una cadena no vacía")
+```
+
+Este decorador convierte el método `nombre` en un **setter**. Un **setter** es una función que permite establecer (modificar) el valor de un atributo privado de la clase. 
+
+Cuando se hace `autor.nombre = "Nuevo Nombre"`, se invoca el setter. El setter recibe el valor proporcionado ("Nuevo Nombre") y realiza una **validación** para asegurarse de que el valor es una cadena no vacía. Si la validación pasa, se asigna el valor a `_nombre`. Si no pasa, se lanza una excepción `ValueError` para indicar que el valor no es válido.
+
+#### b) **`@nacionalidad.setter`:**
+
+El setter para `nacionalidad` funciona de la misma manera:
+
+```python
+@nacionalidad.setter
+def nacionalidad(self, valor):
+    if isinstance(valor, str) and valor.strip():
+        self._nacionalidad = valor
+    else:
+        raise ValueError("La nacionalidad debe ser una cadena no vacía")
+```
+
+### 5. **Uso de la clase `Autor`:**
+
+- Primero, creamos un autor con el nombre "Gabriel García Márquez" y la nacionalidad "Colombiano".
+- Accedemos a sus atributos `nombre` y `nacionalidad` usando `autor.nombre` y `autor.nacionalidad`. Esto invoca los **getters** definidos por los decoradores `@property`.
+- Modificamos los atributos usando `autor.nombre = "Juan Rulfo"` y `autor.nacionalidad = "Mexicano"`. Esto invoca los **setters**, que verifican que los nuevos valores sean válidos antes de asignarlos.
+
+### Resumen:
+- Los **getters** (`@property`) permiten acceder a los atributos privados sin necesidad de hacerlo directamente.
+- Los **setters** (`@nombre.setter` y `@nacionalidad.setter`) permiten modificar los atributos privados, asegurándose de que los valores sean válidos antes de cambiarlos.
+
+Esto mejora la encapsulación y la validación de datos, asegurando que los atributos de la clase estén siempre en un estado válido.
