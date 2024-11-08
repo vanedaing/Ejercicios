@@ -1,0 +1,29 @@
+class Autor:
+    # Constructor de la clase
+    def __init__(self, nombre="", nacionalidad=""):
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+        self.libros = []  # Lista de libros escritos por el autor
+
+    # Método para mostrar los detalles del autor
+    def mostrar_autor(self):
+        print(f"Nombre: {self.nombre}")
+        print(f"Nacionalidad: {self.nacionalidad}")
+        print("Libros escritos:")
+        for libro in self.libros:
+            print(f" - {libro}")
+
+    # Método para agregar un libro a la lista de libros
+    def agregar_libro(self, titulo_libro):
+        self.libros.append(titulo_libro)
+        print(f"El libro '{titulo_libro}' ha sido agregado a la lista de {self.nombre}.")
+
+# Ejemplo de uso
+autor1 = Autor("Gabriel García Márquez", "Colombiano")
+
+# Agregar libros al autor
+autor1.agregar_libro("Cien años de soledad")
+autor1.agregar_libro("El amor en los tiempos del cólera")
+
+# Mostrar información del autor y su lista de libros
+autor1.mostrar_autor()
