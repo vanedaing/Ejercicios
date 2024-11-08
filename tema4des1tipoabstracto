@@ -1,0 +1,87 @@
+class Libro:
+    def __init__(self, titulo, autor, isbn, copias):
+        self.titulo = titulo
+        self.autor = autor
+        self.isbn = isbn
+        self.copias = copias
+
+class Usuario:
+    def __init__(self, nombre, id_usuario):
+        self.nombre = nombre
+        self.id_usuario = id_usuario
+        self.prestamos = []
+        self.multa_total = 0
+
+class Prestamo:
+    def __init__(self, libro, usuario, fecha_prestamo):
+        self.libro = libro
+        self.usuario = usuario
+        self.fecha_prestamo = fecha_prestamo
+        self.fecha_devolucion = None
+
+    def devolver(self, fecha_devolucion):
+        self.fecha_devolucion = fecha_devolucion
+
+class Multa:
+    def __init__(self, prestamo, cantidad):
+        self.prestamo = prestamo
+        self.cantidad = cantidad
+
+class GestorBiblioteca:
+    def __init__(self):
+        self.libros = []
+        self.usuarios = []
+
+    def registrar_libro(self, libro):
+        self.libros.append(libro)
+        print(f"Libro '{libro.titulo}' registrado con éxito.")
+
+    def registrar_usuario(self, usuario):
+        self.usuarios.append(usuario)
+        print(f"Usuario '{usuario.nombre}' registrado con éxito.")
+
+    def prestar_libro(self, id_usuario, isbn, fecha_prestamo):
+        usuario = next((u for u in self.usuarios if u.id_usuario == id_usuario), None)
+        libro = next((l for l in self.libros if l.isbn == isbn), None)
+        if usuario and libro and libro.copias > 0:
+            libro.copias -= 1
+            prestamo = Prestamo(libro, usuario, fecha_prestamo)
+            usuario.prestamos.append(prestamo)
+            print(f"Préstamo realizado: {usuario.nombre} ha tomado '{libro.titulo}'.")
+            return prestamo
+        else:
+            print("Préstamo no realizado: el libro no está disponible o el usuario no existe.")
+            return None
+
+    def devolver_libro(self, prestamo, fecha_devolucion):
+        prestamo.devolver(fecha_devolucion)
+        prestamo.libro.copias += 1
+        print(f"Libro '{prestamo.libro.titulo}' devuelto por {prestamo.usuario.nombre}.")
+
+    def calcular_multa(self, prestamo, dias_tarde):
+        if dias_tarde > 0:
+            multa = Multa(prestamo, dias_tarde * 2)  # Ejemplo: $2 por día tarde
+            prestamo.usuario.multa_total += multa.cantidad
+            print(f"Multa de ${multa.cantidad} aplicada a {prestamo.usuario.nombre} por devolver tarde.")
+            return multa
+        else:
+            print(f"{prestamo.usuario.nombre} devolvió el libro a tiempo, no hay multa.")
+            return None
+
+# Ejemplo de uso del Gestor de Biblioteca
+gestor = GestorBiblioteca()
+
+# Registrar libros y usuarios
+libro1 = Libro("Cien años de soledad", "Gabriel García Márquez", "12345", 3)
+gestor.registrar_libro(libro1)
+
+usuario1 = Usuario("Juan Perez", "001")
+gestor.registrar_usuario(usuario1)
+
+# Realizar un préstamo
+prestamo = gestor.prestar_libro("001", "12345", "2024-11-07")
+
+# Devolver el libro tarde y calcular multa
+if prestamo:
+    gestor.devolver_libro(prestamo, "2024-11-14")
+    gestor.calcular_multa(prestamo, dias_tarde=3)
