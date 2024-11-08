@@ -1,0 +1,40 @@
+from abc import ABC, abstractmethod
+
+# Estrategia para habilidades de personajes
+class Habilidad(ABC):
+    @abstractmethod
+    def ejecutar(self):
+        pass
+
+class AtaqueEspada(Habilidad):
+    def ejecutar(self):
+        print("Ataca con la espada!")
+
+class DefensaEscudo(Habilidad):
+    def ejecutar(self):
+        print("Defiende con el escudo!")
+
+class MagiaFuego(Habilidad):
+    def ejecutar(self):
+        print("Lanza una bola de fuego!")
+
+# Personaje que usa una habilidad asignada
+class Personaje:
+    def __init__(self, nombre, habilidad: Habilidad):
+        self.nombre = nombre
+        self.habilidad = habilidad
+
+    def usar_habilidad(self):
+        print(f"{self.nombre} usa su habilidad:")
+        self.habilidad.ejecutar()
+
+# Ejemplo de uso
+guerrero = Personaje("Guerrero", AtaqueEspada())
+mago = Personaje("Mago", MagiaFuego())
+
+guerrero.usar_habilidad()  # Guerrero usa AtaqueEspada
+mago.usar_habilidad()      # Mago usa MagiaFuego
+
+# Se puede cambiar la habilidad en tiempo de ejecución sin cambiar la clase de Personaje
+guerrero.habilidad = DefensaEscudo()
+guerrero.usar_habilidad()  # Guerrero ahora usa DefensaEscudo
