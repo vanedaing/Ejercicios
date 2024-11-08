@@ -1,0 +1,53 @@
+# Estructura principal para almacenar la información de la cadena de tiendas
+cadena_tiendas = {
+    "Tienda1": {
+        "productos": {
+            "p001": {"nombre": "Camisa", "precio": 20.0, "stock": 50},
+            "p002": {"nombre": "Pantalón", "precio": 35.0, "stock": 40},
+        },
+        "empleados": [
+            {"id": "e001", "nombre": "Juan", "rol": "Gerente"},
+            {"id": "e002", "nombre": "Ana", "rol": "Vendedor"},
+        ],
+        "transacciones": [
+            {"id": "t001", "producto": "p001", "cantidad": 2, "total": 40.0},
+            {"id": "t002", "producto": "p002", "cantidad": 1, "total": 35.0},
+        ]
+    },
+    "Tienda2": {
+        "productos": {
+            "p003": {"nombre": "Zapatos", "precio": 50.0, "stock": 20},
+            "p004": {"nombre": "Sombrero", "precio": 15.0, "stock": 60},
+        },
+        "empleados": [
+            {"id": "e003", "nombre": "Luis", "rol": "Gerente"},
+            {"id": "e004", "nombre": "Sara", "rol": "Vendedor"},
+        ],
+        "transacciones": [
+            {"id": "t003", "producto": "p003", "cantidad": 1, "total": 50.0},
+        ]
+    }
+}
+
+# Funciones para gestionar el inventario
+
+# Agregar un nuevo producto a una tienda
+def agregar_producto(tienda, codigo, nombre, precio, stock):
+    cadena_tiendas[tienda]["productos"][codigo] = {"nombre": nombre, "precio": precio, "stock": stock}
+
+# Realizar una venta y actualizar stock
+def realizar_venta(tienda, codigo_producto, cantidad):
+    producto = cadena_tiendas[tienda]["productos"].get(codigo_producto)
+    if producto and producto["stock"] >= cantidad:
+        total = producto["precio"] * cantidad
+        producto["stock"] -= cantidad
+        nueva_transaccion = {"id": f"t{len(cadena_tiendas[tienda]['transacciones']) + 1}",
+                             "producto": codigo_producto, "cantidad": cantidad, "total": total}
+        cadena_tiendas[tienda]["transacciones"].append(nueva_transaccion)
+        print(f"Venta realizada: {nueva_transaccion}")
+    else:
+        print("Stock insuficiente o producto no encontrado")
+
+# Ejemplo de uso
+agregar_producto("Tienda1", "p005", "Cinturón", 10.0, 30)
+realizar_venta("Tienda1", "p001", 3)  # Realiza una venta de 3 camisetas
