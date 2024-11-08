@@ -1,0 +1,58 @@
+# Clase Libro
+class Libro:
+    def __init__(self, titulo, genero, isbn):
+        self.titulo = titulo
+        self.genero = genero
+        self.isbn = isbn
+
+# Clase Autor
+class Autor:
+    def __init__(self, nombre, nacionalidad):
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+        self.libros = []
+
+    def agregar_libro(self, libro):
+        self.libros.append(libro)
+
+# Función para buscar un autor en la biblioteca
+def buscar_autor(biblioteca, nombre_autor):
+    for autor in biblioteca:
+        if autor.nombre == nombre_autor:
+            return autor  # Devuelve el objeto Autor si se encuentra
+    return None  # Si no se encuentra, devuelve None
+
+# Función para buscar un libro por título
+def buscar_libro(biblioteca, titulo_libro):
+    for autor in biblioteca:
+        for libro in autor.libros:
+            if libro.titulo == titulo_libro:
+                return autor, libro  # Devuelve el autor y el libro encontrado
+    return None, None  # Si no se encuentra el libro, devuelve None
+
+# Creando algunos autores y libros de ejemplo
+autor1 = Autor("Gabriel García Márquez", "Colombiano")
+libro1 = Libro("Cien años de soledad", "Realismo mágico", "123456789")
+libro2 = Libro("El amor en los tiempos del cólera", "Romance", "987654321")
+autor1.agregar_libro(libro1)
+autor1.agregar_libro(libro2)
+
+autor2 = Autor("Isabel Allende", "Chilena")
+libro3 = Libro("La casa de los espíritus", "Realismo mágico", "1122334455")
+autor2.agregar_libro(libro3)
+
+# Definir la biblioteca como una lista de autores
+biblioteca = [autor1, autor2]
+
+# Ejemplo de uso:
+autor_buscado = buscar_autor(biblioteca, "Gabriel García Márquez")
+if autor_buscado:
+    print(f"Autor encontrado: {autor_buscado.nombre}")
+else:
+    print("Autor no encontrado.")
+
+autor_del_libro, libro_encontrado = buscar_libro(biblioteca, "Cien años de soledad")
+if libro_encontrado:
+    print(f"Libro encontrado: {libro_encontrado.titulo}, Autor: {autor_del_libro.nombre}")
+else:
+    print("Libro no encontrado.")
