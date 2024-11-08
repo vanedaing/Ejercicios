@@ -1,0 +1,91 @@
+class Libro:
+    def __init__(self, titulo, genero, isbn, autor=None):
+        self.titulo = titulo
+        self.genero = genero
+        self.isbn = isbn
+        self.autor = autor
+
+    def mostrar_libro(self):
+        print(f"Título: {self.titulo}, Género: {self.genero}, ISBN: {self.isbn}")
+        if self.autor:
+            print(f"Autor: {self.autor.nombre}")
+
+
+class Autor:
+    def __init__(self, nombre, nacionalidad):
+        self.nombre = nombre
+        self.nacionalidad = nacionalidad
+        self.libros = []
+
+    def agregar_libro(self, libro):
+        if libro not in self.libros:
+            self.libros.append(libro)
+            libro.autor = self
+
+    def mostrar_autor(self):
+        print(f"Nombre: {self.nombre}, Nacionalidad: {self.nacionalidad}")
+        print("Libros escritos:")
+        for libro in self.libros:
+            print(f" - {libro.titulo}")
+
+
+class Biblioteca:
+    def __init__(self):
+        self.autores = {}  # Diccionario de autores por nombre
+        self.libros = {}   # Diccionario de libros por ISBN
+
+    def agregar_autor(self, nombre, nacionalidad):
+        if nombre not in self.autores:
+            autor = Autor(nombre, nacionalidad)
+            self.autores[nombre] = autor
+            print(f"Autor '{nombre}' agregado a la biblioteca.")
+        else:
+            print(f"El autor '{nombre}' ya existe.")
+
+    def agregar_libro(self, titulo, genero, isbn, nombre_autor):
+        # Si el autor no existe, lo agregamos primero
+        if nombre_autor not in self.autores:
+            print(f"El autor '{nombre_autor}' no existe en la biblioteca.")
+            return
+        
+        autor = self.autores[nombre_autor]
+        libro = Libro(titulo, genero, isbn, autor)
+        
+        # Agregamos el libro a la biblioteca y al autor
+        self.libros[isbn] = libro
+        autor.agregar_libro(libro)
+        print(f"Libro '{titulo}' agregado a la biblioteca.")
+
+    def buscar_libro_por_isbn(self, isbn):
+        if isbn in self.libros:
+            self.libros[isbn].mostrar_libro()
+        else:
+            print("No se encontró el libro con el ISBN especificado.")
+
+    def buscar_autor(self, nombre):
+        if nombre in self.autores:
+            self.autores[nombre].mostrar_autor()
+        else:
+            print("No se encontró el autor especificado.")
+
+
+# Ejemplo de uso
+# Crear la biblioteca
+biblioteca = Biblioteca()
+
+# Agregar autores
+biblioteca.agregar_autor("Mario Benedetti", "Uruguayo")
+biblioteca.agregar_autor("Gabriel García Márquez", "Colombiano")
+
+# Agregar libros asociados a los autores
+biblioteca.agregar_libro("La Tregua", "Novela", "12345", "Mario Benedetti")
+biblioteca.agregar_libro("Cien Años de Soledad", "Novela", "67890", "Gabriel García Márquez")
+biblioteca.agregar_libro("El Amor en los Tiempos del Cólera", "Novela", "11223", "Gabriel García Márquez")
+
+# Buscar un libro por ISBN
+print("\nBúsqueda de libro por ISBN:")
+biblioteca.buscar_libro_por_isbn("67890")
+
+# Buscar un autor y mostrar sus libros
+print("\nBúsqueda de autor:")
+biblioteca.buscar_autor("Gabriel García Márquez")
