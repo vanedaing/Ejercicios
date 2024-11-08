@@ -1,0 +1,51 @@
+import csv
+
+def actualizar_cantidad_libro(titulo_libro, nueva_cantidad):
+    # Lista para almacenar los datos actualizados
+    inventario_actualizado = []
+    libro_encontrado = False
+
+    # Leer el archivo CSV y actualizar la cantidad de copias
+    try:
+        with open("inventario.csv", "r") as archivo:
+            lector_csv = csv.reader(archivo)
+            # Leer encabezado
+            encabezado = next(lector_csv)
+            inventario_actualizado.append(encabezado)
+
+            # Leer y actualizar registros
+            for linea in lector_csv:
+                titulo, copias = linea
+                if titulo == titulo_libro:
+                    inventario_actualizado.append([titulo, nueva_cantidad])
+                    libro_encontrado = True
+                else:
+                    inventario_actualizado.append(linea)
+
+        # Si no se encontró el libro, notificar al usuario
+        if not libro_encontrado:
+            print(f"El libro '{titulo_libro}' no se encontró en el inventario.")
+            return
+
+        # Escribir el archivo con las actualizaciones
+        with open("inventario.csv", "w", newline="") as archivo:
+            escritor_csv = csv.writer(archivo)
+            escritor_csv.writerows(inventario_actualizado)
+
+        print(f"Cantidad de copias de '{titulo_libro}' actualizada a {nueva_cantidad}.")
+
+    except FileNotFoundError:
+        print("El archivo inventario.csv no se encontró.")
+    except Exception as e:
+        print(f"Ocurrió un error al actualizar el inventario: {e}")
+
+# Solicitar datos al usuario
+titulo = input("Ingrese el título del libro a actualizar: ")
+cantidad = input("Ingrese la nueva cantidad de copias disponibles: ")
+
+# Verificar que la cantidad sea un número entero válido
+try:
+    cantidad = int(cantidad)
+    actualizar_cantidad_libro(titulo, cantidad)
+except ValueError:
+    print("La cantidad debe ser un número entero.")
