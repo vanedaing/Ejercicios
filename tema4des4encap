@@ -1,0 +1,49 @@
+class Autor:
+    def __init__(self, nombre, nacionalidad):
+        self._nombre = nombre
+        self._nacionalidad = nacionalidad
+        self._libros = []  # Lista privada para almacenar los títulos de libros
+
+    @property
+    def nombre(self):
+        return self._nombre
+
+    @nombre.setter
+    def nombre(self, valor):
+        if isinstance(valor, str) and valor.strip():
+            self._nombre = valor
+        else:
+            raise ValueError("El nombre debe ser una cadena no vacía")
+
+    @property
+    def nacionalidad(self):
+        return self._nacionalidad
+
+    @nacionalidad.setter
+    def nacionalidad(self, valor):
+        if isinstance(valor, str) and valor.strip():
+            self._nacionalidad = valor
+        else:
+            raise ValueError("La nacionalidad debe ser una cadena no vacía")
+    
+    def agregar_libro(self, titulo):
+        """Método para agregar un libro a la lista"""
+        if isinstance(titulo, str) and titulo.strip():
+            self._libros.append(titulo)
+        else:
+            raise ValueError("El título del libro debe ser una cadena no vacía")
+
+    def obtener_libros(self):
+        """Método para obtener la lista de títulos de libros"""
+        return self._libros
+
+# Ejemplo de uso
+autor = Autor("Gabriel García Márquez", "Colombiano")
+autor.agregar_libro("Cien años de soledad")
+autor.agregar_libro("El otoño del patriarca")
+
+# Obtener los libros del autor
+print(autor.obtener_libros())  # Output: ['Cien años de soledad', 'El otoño del patriarca']
+
+# Intentar acceder a la lista de libros directamente dará un error
+# print(autor._libros)  # Esto no se debe hacer, es privado
