@@ -1,0 +1,29 @@
+import math
+
+# Clase base Figura
+class Figura:
+    def area(self):
+        raise NotImplementedError("Este método debe ser sobrescrito en la subclase")
+
+# Subclase Circulo que sobrescribe el método area
+class Circulo(Figura):
+    def __init__(self, radio):
+        self.radio = radio
+
+    def area(self):
+        return math.pi * (self.radio ** 2)
+
+# Subclase Cuadrado que sobrescribe el método area
+class Cuadrado(Figura):
+    def __init__(self, lado):
+        self.lado = lado
+
+    def area(self):
+        return self.lado ** 2
+
+# Ejemplo de uso
+figuras = [Circulo(10), Cuadrado(100)]
+
+# Demostración de polimorfismo
+for figura in figuras:
+    print(f"Área de la figura: {figura.area()}")
