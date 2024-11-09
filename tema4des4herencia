@@ -1,0 +1,39 @@
+# Clase base Escritor
+class Escritor:
+    def __init__(self, nombre, cantidad_libros):
+        self.nombre = nombre
+        self.cantidad_libros = cantidad_libros
+
+    def escribir_libro(self):
+        return f"{self.nombre} ha escrito {self.cantidad_libros} libros."
+
+# Clase base Academico
+class Academico:
+    def __init__(self, universidad, area_estudio):
+        self.universidad = universidad
+        self.area_estudio = area_estudio
+
+    def ensenar(self):
+        return f"Academico en {self.universidad}, especializado en {self.area_estudio}."
+
+# Clase EscritorAcademico que hereda de Escritor y Academico
+class EscritorAcademico(Escritor, Academico):
+    def __init__(self, nombre, cantidad_libros, universidad, area_estudio):
+        # Inicializa las clases base
+        Escritor.__init__(self, nombre, cantidad_libros)
+        Academico.__init__(self, universidad, area_estudio)
+
+    def publicar_articulo(self, tema):
+        return f"{self.nombre} ha publicado un artículo sobre {tema}."
+
+    def informacion_completa(self):
+        # Combina la información de Escritor y Academico
+        escritor_info = self.escribir_libro()
+        academico_info = self.ensenar()
+        return f"{escritor_info} {academico_info} Además, {self.publicar_articulo('investigación avanzada')}"
+
+# Ejemplo de uso
+escritor_academico = EscritorAcademico("Carlos Pérez", 5, "Universidad de Madrid", "Física Cuántica")
+
+# Mostrar la información completa
+print(escritor_academico.informacion_completa())
