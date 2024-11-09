@@ -1,0 +1,61 @@
+# Clase base para todos los empleados
+class Empleado:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def detalles(self):
+        return f"Empleado: {self.nombre}, Edad: {self.edad}"
+
+# Clase para habilidades administrativas (composición)
+class Administrador:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def gestionar_recursos(self):
+        return f"{self.nombre} está gestionando los recursos de la biblioteca."
+
+# Clase para habilidades de mantenimiento (composición)
+class Mantenimiento:
+    def __init__(self, nombre):
+        self.nombre = nombre
+
+    def realizar_mantenimiento(self):
+        return f"{self.nombre} está realizando mantenimiento en la biblioteca."
+
+# Clase Gerente que hereda de Empleado y usa composición con Administrador
+class Gerente(Empleado):
+    def __init__(self, nombre, edad):
+        super().__init__(nombre, edad)
+        self.administrador = Administrador(nombre)  # Pasamos el nombre
+
+    def detalles(self):
+        return f"Gerente: {self.nombre}, Edad: {self.edad}"
+
+# Clase Tecnico que hereda de Empleado y usa composición con Mantenimiento
+class Tecnico(Empleado):
+    def __init__(self, nombre, edad):
+        super().__init__(nombre, edad)
+        self.mantenimiento = Mantenimiento(nombre)  # Pasamos el nombre
+
+    def detalles(self):
+        return f"Tecnico: {self.nombre}, Edad: {self.edad}"
+
+# Clase Voluntario que hereda de Empleado
+class Voluntario(Empleado):
+    def detalles(self):
+        return f"Voluntario: {self.nombre}, Edad: {self.edad}"
+
+# Ejemplo de uso
+gerente = Gerente("Laura", 45)
+tecnico = Tecnico("Carlos", 30)
+voluntario = Voluntario("Ana", 25)
+
+# Mostrar detalles y roles adicionales
+print(gerente.detalles())
+print(gerente.administrador.gestionar_recursos())
+
+print(tecnico.detalles())
+print(tecnico.mantenimiento.realizar_mantenimiento())
+
+print(voluntario.detalles())
