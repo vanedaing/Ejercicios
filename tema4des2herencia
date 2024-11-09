@@ -1,0 +1,27 @@
+# Clase base Usuario
+class Usuario:
+    def __init__(self, nombre, id_usuario):
+        self.nombre = nombre
+        self.id_usuario = id_usuario
+
+    def informacion(self):
+        return f"Usuario: {self.nombre}, ID: {self.id_usuario}"
+
+# Subclase Bibliotecario que hereda de Usuario
+class Bibliotecario(Usuario):
+    def __init__(self, nombre, id_usuario, seccion, años_experiencia):
+        # Inicializa los atributos heredados de Usuario
+        super().__init__(nombre, id_usuario)
+        # Nuevos atributos específicos de Bibliotecario
+        self.seccion = seccion
+        self.años_experiencia = años_experiencia
+
+    def informacion(self):
+        return (f"Bibliotecario: {self.nombre}, ID: {self.id_usuario}, Sección: {self.seccion}, "
+                f"Años de experiencia: {self.años_experiencia}")
+
+# Ejemplo de uso
+bibliotecario = Bibliotecario("María López", "B123", "Literatura", 5)
+
+# Mostrar la información del bibliotecario
+print(bibliotecario.informacion())
