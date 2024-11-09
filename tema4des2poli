@@ -1,0 +1,21 @@
+# Clase base Autor
+class Autor:
+    def __init__(self, nombre, cantidad_libros):
+        self.nombre = nombre
+        self.cantidad_libros = cantidad_libros
+
+    # Método biografia en la clase base
+    def biografia(self):
+        return f"{self.nombre} ha escrito {self.cantidad_libros} libros."
+
+# Subclase Escritor que sobrescribe el método biografia
+class Escritor(Autor):
+    def biografia(self):
+        return f"{self.nombre} es un escritor prolífico con {self.cantidad_libros} libros publicados, destacándose por su estilo único."
+
+# Crear una instancia de Escritor
+escritor = Escritor("Gabriel García Márquez", 10)
+
+# Mostrar cómo acceder al método biografia de ambas clases
+print("Biografía de Autor:", super(Escritor, escritor).biografia())  # Llama al método biografia de la clase Autor
+print("Biografía de Escritor:", escritor.biografia())  # Llama al método biografia sobrescrito en Escritor
