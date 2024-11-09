@@ -1,0 +1,26 @@
+# Clase base Autor
+class Autor:
+    def __init__(self, nombre, cantidad_libros):
+        self.nombre = nombre
+        self.cantidad_libros = cantidad_libros
+
+    def biografia(self):
+        return f"{self.nombre} ha escrito {self.cantidad_libros} libros."
+
+# Subclase Poeta que hereda de Autor
+class Poeta(Autor):
+    def __init__(self, nombre, cantidad_libros, tipo_poesia):
+        # Inicializa los atributos heredados de Autor
+        super().__init__(nombre, cantidad_libros)
+        # Nuevo atributo específico de Poeta
+        self.tipo_poesia = tipo_poesia
+
+    def biografia(self):
+        return (f"{self.nombre} ha escrito {self.cantidad_libros} libros y se especializa en "
+                f"poesía de tipo {self.tipo_poesia}.")
+
+# Ejemplo de uso
+poeta = Poeta("Pablo Neruda", 20, "Poesía lírica")
+
+# Mostrar la biografía del poeta
+print(poeta.biografia())
