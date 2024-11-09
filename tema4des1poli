@@ -1,0 +1,27 @@
+# Clase base Musico
+class Musico:
+    def instrumento(self):
+        return "Instrumento desconocido"
+
+# Subclase Guitarrista que sobrescribe el método instrumento
+class Guitarrista(Musico):
+    def instrumento(self):
+        return "Guitarra"
+
+# Subclase Baterista que sobrescribe el método instrumento
+class Baterista(Musico):
+    def instrumento(self):
+        return "Batería"
+
+# Crear instancias de cada clase
+musico = Musico()
+guitarrista = Guitarrista()
+baterista = Baterista()
+
+# Lista de músicos para demostrar polimorfismo
+lista_musicos = [musico, guitarrista, baterista]
+
+# Demostración de polimorfismo
+for musico in lista_musicos:
+    print(f"Este músico toca: {musico.instrumento()}")
+
