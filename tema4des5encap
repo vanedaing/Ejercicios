@@ -1,0 +1,37 @@
+class Autor:
+    def __init__(self, nombre, cantidad_libros):
+        self.__nombre = nombre
+        self.__cantidad_libros = cantidad_libros
+    
+    # Método para obtener el nombre del autor
+    def obtener_nombre(self):
+        return self.__nombre
+    
+    # Método para obtener la cantidad de libros escritos por el autor
+    def obtener_cantidad_libros(self):
+        return self.__cantidad_libros
+
+def autor_con_mas_libros(lista_autores):
+    if not lista_autores:
+        return None  # Devuelve None si la lista está vacía
+    
+    # Encontramos el autor con la mayor cantidad de libros usando el método encapsulado
+    autor_max = lista_autores[0]
+    for autor in lista_autores:
+        if autor.obtener_cantidad_libros() > autor_max.obtener_cantidad_libros():
+            autor_max = autor
+    
+    return autor_max
+
+# Ejemplo de uso:
+autor1 = Autor("Gabriel García Márquez", 10)
+autor2 = Autor("Isabel Allende", 15)
+autor3 = Autor("Mario Vargas Llosa", 12)
+
+lista_autores = [autor1, autor2, autor3]
+autor_max = autor_con_mas_libros(lista_autores)
+
+if autor_max:
+    print(f"El autor con más libros es {autor_max.obtener_nombre()}, con {autor_max.obtener_cantidad_libros()} libros.")
+else:
+    print("La lista de autores está vacía.")
