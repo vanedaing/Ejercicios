@@ -1,0 +1,26 @@
+# Clase base Operacion
+class Operacion:
+    def __init__(self, num1, num2):
+        self.num1 = num1
+        self.num2 = num2
+
+    # Método resultado (se espera que sea sobrescrito en subclases)
+    def resultado(self):
+        raise NotImplementedError("Este método debe ser sobrescrito en la subclase")
+
+# Subclase Suma que sobrescribe el método resultado
+class Suma(Operacion):
+    def resultado(self):
+        return self.num1 + self.num2
+
+# Subclase Multiplicacion que sobrescribe el método resultado
+class Multiplicacion(Operacion):
+    def resultado(self):
+        return self.num1 * self.num2
+
+# Ejemplo de uso
+operaciones = [Suma(15, 3), Multiplicacion(15, 3)]
+
+# Demostración de polimorfismo
+for operacion in operaciones:
+    print(f"Resultado de la operación: {operacion.resultado()}")
