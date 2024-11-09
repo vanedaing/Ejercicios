@@ -1,0 +1,32 @@
+# Clase base Libro
+class Libro:
+    def __init__(self, titulo, autor):
+        self.titulo = titulo
+        self.autor = autor
+
+    # Método para mostrar información básica del libro
+    def info(self):
+        return f"Título: {self.titulo}, Autor: {self.autor}"
+
+# Subclase LibroEspecializado que hereda de Libro
+class LibroEspecializado(Libro):
+    def __init__(self, titulo, autor, campo_estudio, nivel_especializacion):
+        # Inicializa los atributos heredados de Libro
+        super().__init__(titulo, autor)
+        # Nuevos atributos de la subclase
+        self.campo_estudio = campo_estudio
+        self.nivel_especializacion = nivel_especializacion
+
+    # Sobrescribe el método info para incluir información adicional
+    def info(self):
+        return (f"Título: {self.titulo}, Autor: {self.autor}, "
+                f"Campo de estudio: {self.campo_estudio}, "
+                f"Nivel de especialización: {self.nivel_especializacion}")
+
+# Ejemplo de uso
+libro = Libro("Cien Años de Soledad", "Gabriel García Márquez")
+libro_especializado = LibroEspecializado("Introducción a la Física Cuántica", "David Griffiths", "Física", "Avanzado")
+
+# Muestra información de ambos libros
+print(libro.info())  # Información básica del libro
+print(libro_especializado.info())  # Información detallada del libro especializado
